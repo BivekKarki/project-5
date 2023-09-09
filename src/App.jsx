@@ -1,9 +1,12 @@
 import React from 'react'
+import Navbar from './conponents/Navbar'
 
 const App = () => {
   return (
-    <div className="bg-red-500 flex justify-center">App</div>
-  )
+    <>
+      <Navbar />
+    </>
+    )
 }
 
 export default App
