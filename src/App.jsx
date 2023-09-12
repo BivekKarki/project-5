@@ -4,6 +4,8 @@ import Searchbar from './conponents/searchbar'
 import {collection, getDocs} from 'firebase/firestore'
 import { db } from './config/firebase'
 
+import ContactCard from './conponents/ContactCard'
+
 const App = () => {
 
 const [contacts, setContacts] = useState();
@@ -21,7 +23,7 @@ useEffect(() => {
         };
       });
       setContacts(contactLists);
-      // console.log(contactLists);
+      console.log(contacts);
 
     } catch (error) {
       console.log(error);
@@ -36,11 +38,12 @@ useEffect(() => {
     <div className='mx-auto max-w-[370px] px-4'>
       <Navbar />
       <Searchbar/>
-      <div className=''>
+      <div className='mt-4' >
         {contacts.map((contact) => (
-          <div key={contact.id}></div>
+          <ContactCard />
         ))}
       </div>
+     
     </div>
       
     </>

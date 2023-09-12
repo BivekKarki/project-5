@@ -1,6 +1,6 @@
 import React from 'react'
 import { FiSearch } from 'react-icons/fi'
-import { AiOutlinePlus } from 'react-icons/ai'
+import { AiOutlinePlusCircle } from 'react-icons/ai'
 const Searchbar = () => {
   return (
     <>
@@ -12,7 +12,7 @@ const Searchbar = () => {
             className='flex-grow h-10 border pl-10 text-white bg-transparent border-white rounded-md' />
         </div>
         
-            <AiOutlinePlus className="text-5xl cursor-pointer text-white"/>
+            <AiOutlinePlusCircle className="text-4xl cursor-pointer text-white"/>
         
       </div>
     </>
