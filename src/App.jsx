@@ -15,15 +15,19 @@ useEffect(() => {
   const getContacts = async () => {
     try {
       const contactRef= collection(db, "contacts");
+      
       const contactsSnapshot = await getDocs(contactRef);
+    
       const contactLists = contactsSnapshot.docs.map((doc) => {
         return{
           id:doc.id,
           ...doc.data(),
         };
       });
+      
       setContacts(contactLists);
       console.log(contacts);
+      
 
     } catch (error) {
       console.log(error);
@@ -39,9 +43,9 @@ useEffect(() => {
       <Navbar />
       <Searchbar/>
       <div className='mt-4' >
-        {contacts.map((contact) => (
-          <ContactCard />
-        ))}
+        {/* { contacts.map((contact) => (
+              <ContactCard key={contact.id} contact={contact} />
+            ))} */}
       </div>
      
     </div>
