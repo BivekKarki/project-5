@@ -5,10 +5,20 @@ import {collection, getDocs} from 'firebase/firestore'
 import { db } from './config/firebase'
 
 import ContactCard from './conponents/ContactCard'
+import Modal from './conponents/Modal'
 
 const App = () => {
 
 const [contacts, setContacts] = useState();
+
+const [isOpen, setOpen] = useState(false);
+
+const onOpen = ()=> {
+  setOpen(true);
+}
+const onClose = ()=> {
+  setOpen(false);
+}
 
 useEffect(() => {
 
@@ -39,17 +49,20 @@ useEffect(() => {
 
   return (
     <>
+   
     <div className='mx-auto max-w-[370px] px-4'>
       <Navbar />
       <Searchbar/>
-      <div className='mt-4' >
-        {/* { contacts.map((contact) => (
+      <div className='mt-4 flex gap-2 flex-col' >
+        { contacts?.map((contact) => (
               <ContactCard key={contact.id} contact={contact} />
-            ))} */}
+            ))}
       </div>
      
     </div>
       
+
+      <Modal isopen={isOpen} onClose={onClose} > Hello</Modal>
     </>
     )
 }
