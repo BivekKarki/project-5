@@ -52,7 +52,7 @@ useEffect(() => {
    
     <div className='mx-auto max-w-[370px] px-4'>
       <Navbar />
-      <Searchbar/>
+      <Searchbar onOpen={onOpen} />
       <div className='mt-4 flex gap-2 flex-col' >
         { contacts?.map((contact) => (
               <ContactCard key={contact.id} contact={contact} />
@@ -62,7 +62,7 @@ useEffect(() => {
     </div>
       
 
-      <Modal isopen={isOpen} onClose={onClose} > Hello</Modal>
+      <Modal isOpen={isOpen} onClose={onClose} > Hello</Modal>
     </>
     )
 }
