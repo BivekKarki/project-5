@@ -4,11 +4,10 @@ import Searchbar from './conponents/searchbar'
 import {collection, getDocs} from 'firebase/firestore'
 import { db } from './config/firebase'
 
-import { FiSearch } from 'react-icons/fi'
-import { AiOutlinePlusCircle } from 'react-icons/ai'
 
 import ContactCard from './conponents/ContactCard'
 import Modal from './conponents/Modal'
+import AddAndUpdateContact from './conponents/AddAndUpdateContact'
 
 const App = () => {
 
@@ -67,9 +66,8 @@ useEffect(() => {
      
     </div>
       
-
-      <Modal isOpen={isOpen} onClose={onClose} > Hello</Modal>
-    </>
+    <AddAndUpdateContact isOpen={isOpen} onClose={onClose} />   
+       </>
     )
 }
 
