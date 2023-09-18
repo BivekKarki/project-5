@@ -55,9 +55,7 @@ useEffect(() => {
     <div className='mx-auto max-w-[370px] px-4'>
       <Navbar />
       <Searchbar onOpen={onOpen} />
-
       
-
       <div className='mt-4 flex gap-2 flex-col' >
         { contacts?.map((contact) => (
               <ContactCard key={contact.id} contact={contact} />

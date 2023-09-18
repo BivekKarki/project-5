@@ -2,10 +2,29 @@ import {Field, Form, Formik} from 'formik';
 import Modal from './Modal';
 
 const AddAndUpdateContact = ({isOpen, onClose}) => {
+
+    const addContact = (contact)=> {
+        try{
+
+        }catch(error){
+
+        }
+        
+    }
+
+
   return (
     <>
     <Modal isOpen={isOpen} onClose={onClose} >
-        <Formik>
+        
+        <Formik initialValues={{
+            name:"",
+            email:"",
+        }}
+        onSubmit={(value)=> {
+            console.log(value);
+        }}
+        >
             <Form className='flex flex-col gap-3'>
                 <div className='flex flex-col gap-1'>
                     <label htmlFor='name'>Name</label>

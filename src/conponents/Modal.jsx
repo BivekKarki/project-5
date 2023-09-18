@@ -12,7 +12,7 @@ const Modal = ({onClose, isOpen, children}) => {
             
             <AiOutlineClose onClick={onClose} className="text-2xl "  />
           </div>
-          <children />
+          {children}
         </div> 
         <div onClick={onClose} className='absolute top-0 z-40 backdrop-blur w-screen h-screen' />
       </>
