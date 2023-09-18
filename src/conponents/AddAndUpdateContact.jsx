@@ -1,13 +1,18 @@
 import {Field, Form, Formik} from 'formik';
 import Modal from './Modal';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../config/firebase';
 
 const AddAndUpdateContact = ({isOpen, onClose}) => {
 
-    const addContact = (contact)=> {
+    const addContact = async (contact)=> {
+
+        console.log("hellllooo "+contact)
         try{
-
+            const contactref = collection(db, "contacts");
+            await addDoc(contactref, contact);
         }catch(error){
-
+            console.log(error);
         }
         
     }
@@ -23,6 +28,8 @@ const AddAndUpdateContact = ({isOpen, onClose}) => {
         }}
         onSubmit={(value)=> {
             console.log(value);
+            addContact(value);
+            // onClose();
         }}
         >
             <Form className='flex flex-col gap-3'>
@@ -35,7 +42,7 @@ const AddAndUpdateContact = ({isOpen, onClose}) => {
                     <label htmlFor='email'>Email</label>
                     <Field name="email"  className="border h-10"/>
                 </div>
-                <button className='bg-orange px-3 py-1.5 border self-end'>add contact</button>
+                <button className='bg-orange-500 px-3 py-1.5 border self-center'>add contact</button>
             </Form>
         </Formik>
    </Modal>
