@@ -1,9 +1,9 @@
 import {Field, Form, Formik} from 'formik';
 import Modal from './Modal';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 
-const AddAndUpdateContact = ({isOpen, onClose}) => {
+const AddAndUpdateContact = ({isOpen, onClose, isUpdate, contact}) => {
 
     const addContact = async (contact)=> {
 
@@ -11,6 +11,21 @@ const AddAndUpdateContact = ({isOpen, onClose}) => {
         try{
             const contactref = collection(db, "contacts");
             await addDoc(contactref, contact);
+            onClose();
+            toast.success("Added successfully");
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    const updateContact = async (contact,id)=> {
+
+        console.log("hellllooo "+contact)
+        try{
+            const contactref = doc(db, "contacts",id);
+            await updateDoc(contactref, contact);
+            onClose();
+            toast.success("Updated successfully");
         }catch(error){
             console.log(error);
         }
@@ -22,12 +37,15 @@ const AddAndUpdateContact = ({isOpen, onClose}) => {
     <>
     <Modal isOpen={isOpen} onClose={onClose} >
         
-        <Formik initialValues={{
+        <Formik initialValues={isUpdate ?{name:contact.name, email:contact.email}:{
+            
             name:"",
             email:"",
         }}
         onSubmit={(value)=> {
             console.log(value);
+            isUpdate ? 
+            updateContact(value,contact.id) :
             addContact(value);
             // onClose();
         }}
@@ -42,7 +60,7 @@ const AddAndUpdateContact = ({isOpen, onClose}) => {
                     <label htmlFor='email'>Email</label>
                     <Field name="email"  className="border h-10"/>
                 </div>
-                <button className='bg-orange-500 px-3 py-1.5 border self-center'>add contact</button>
+                <button className='bg-orange-500 px-3 py-1.5 border self-center'>{ isUpdate ? "update" : "add"} contact</button>
             </Form>
         </Formik>
    </Modal>

@@ -1,13 +1,19 @@
 import { deleteDoc, doc } from 'firebase/firestore'
-import React from 'react'
+import React, { useState } from 'react'
 import { BiUserCircle } from 'react-icons/bi'
 import { IoMdTrash } from 'react-icons/io'
 import { RiEditCircleFill } from 'react-icons/ri'
 import { db } from '../config/firebase'
+import AddAndUpdateContact from './AddAndUpdateContact'
+import useDisclose from '../hooks/useDisclose'
 
 
     const ContactCard = ({ contact }) => {
 
+      const {onClose, onOpen, isOpen} = useDisclose(false);
+
+
+// =====================delete contact part ==============
       const deleteContact = async (id)=> {
         try {
           await deleteDoc(doc(db,"contacts",id));
@@ -28,10 +34,12 @@ import { db } from '../config/firebase'
               </div>
             </div>
             <div className='flex text-3xl'>
-              <RiEditCircleFill />
-              <IoMdTrash onClick={()=>deleteContact(contact.id)} className='text-orange-400'/>
+              <RiEditCircleFill onClick={onOpen} className='cursor-pointer' />
+              <IoMdTrash onClick={()=>deleteContact(contact.id)} className='text-orange-400 cursor-pointer'/>
             </div>
           </div>
+
+          <AddAndUpdateContact contact={contact} isUpdate isOpen={isOpen} onClose={onClose} />
     </>
   )
 }
