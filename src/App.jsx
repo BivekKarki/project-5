@@ -48,12 +48,32 @@ useEffect(() => {
 
 }, []);
 
+ const filterContact = (e) => {
+  const value = e.target.value;
+
+  const contactRef= collection(db, "contacts");
+
+  onSnapshot(contactRef, (snapshot)=>{
+    const contactLists = snapshot.docs.map((doc) => {
+      return{
+        id:doc.id,
+        ...doc.data(),
+      };
+    });
+
+    const filteredContact = contactLists.filter((contact)=> contact.name.toLowerCase().includes(value.toLowerCase()))
+    setContacts(filteredContact);
+        // console.log(contacts);
+        return filteredContact
+      })
+}
+
   return (
     <>
    
     <div className='mx-auto max-w-[370px] px-4'>
       <Navbar />
-      <Searchbar onOpen={onOpen} />
+      <Searchbar onOpen={onOpen} filterContact={filterContact}/>
       
       <div className='mt-4 flex gap-2 flex-col' >
         { contacts?.map((contact) => (
@@ -70,4 +90,5 @@ useEffect(() => {
     )
 }
 
-export default App
+export default App;
+// export { filterContact };

@@ -42,6 +42,7 @@ import { toast } from 'react-toastify'
           </div>
 
           <AddAndUpdateContact contact={contact} isUpdate isOpen={isOpen} onClose={onClose} />
+      
     </>
   )
 }
