@@ -10,6 +10,7 @@ import ContactCard from './conponents/ContactCard'
 import Modal from './conponents/Modal'
 import AddAndUpdateContact from './conponents/AddAndUpdateContact'
 import useDisclose from './hooks/useDisclose'
+import NotFoundContact from './conponents/NotFoundContact'
 
 const App = () => {
 
@@ -76,9 +77,9 @@ useEffect(() => {
       <Searchbar onOpen={onOpen} filterContact={filterContact}/>
       
       <div className='mt-4 flex gap-2 flex-col' >
-        { contacts?.map((contact) => (
+        { contacts.length <= 0 ? (<NotFoundContact /> ): (contacts?.map((contact) => (
               <ContactCard key={contact.id} contact={contact} />
-            ))}
+            )))}
       </div>
      
     </div>
