@@ -14,7 +14,7 @@ import NotFoundContact from './conponents/NotFoundContact'
 
 const App = () => {
 
-const [contacts, setContacts] = useState();
+const [contacts, setContacts] = useState([]);
 
 const {onClose, onOpen, isOpen} = useDisclose(false);
 
